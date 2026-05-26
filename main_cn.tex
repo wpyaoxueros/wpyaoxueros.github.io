@@ -1,10 +1,12 @@
-% !TeX program = xelatex
-% !TeX encoding = UTF-8
 \documentclass[10pt, letterpaper]{article}
 \hyphenpenalty=10000
 \exhyphenpenalty=10000
 \usepackage{ragged2e} % 提供 \justifying
-\usepackage[UTF8, fontset=fandol]{ctex} % 中文支持，Overleaf 请使用 XeLaTeX 编译
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont{FandolSong-Regular}
+\setCJKsansfont{FandolHei-Regular}
+\setCJKmonofont{FandolFang-Regular}
 \usepackage{ragged2e}
 \usepackage{etoolbox}
 % twocolentry / onecolentry 中的文字默认用两端对齐
