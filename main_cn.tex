@@ -1,0 +1,553 @@
+\documentclass[10pt, letterpaper]{article}
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\usepackage{ragged2e} % 提供 \justifying
+\usepackage[UTF8]{ctex} % 中文支持，建议使用 XeLaTeX 编译
+\usepackage{ragged2e}
+\usepackage{etoolbox}
+% twocolentry / onecolentry 中的文字默认用两端对齐
+\AtBeginEnvironment{twocolentry}{\justifying}
+\AtBeginEnvironment{onecolentry}{\justifying}
+% 减少断字（不在词内断开）
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\emergencystretch=2em
+
+% Packages:
+\usepackage[
+    ignoreheadfoot, % set margins without considering header and footer
+    top=2 cm, % seperation between body and page edge from the top
+    bottom=2 cm, % seperation between body and page edge from the bottom
+    left=2 cm, % seperation between body and page edge from the left
+    right=2 cm, % seperation between body and page edge from the right
+    footskip=1.0 cm, % seperation between body and footer
+    % showframe % for debugging 
+]{geometry} % for adjusting page geometry
+\usepackage{titlesec} % for customizing section titles
+\usepackage{tabularx} % for making tables with fixed width columns
+\usepackage{array} % tabularx requires this
+\usepackage[dvipsnames]{xcolor} % for coloring text
+\definecolor{primaryColor}{RGB}{0, 79, 144} % define primary color
+\usepackage{enumitem} % for customizing lists
+\usepackage{fontawesome5} % for using icons
+\usepackage{amsmath} % for math
+\usepackage[
+    pdftitle={Huashuo Lei's CV},
+    pdfauthor={Huashuo Lei},
+    pdfcreator={LaTeX with RenderCV},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref} % for links, metadata and bookmarks
+\usepackage[pscoord]{eso-pic} % for floating text on the page
+\usepackage{calc} % for calculating lengths
+\usepackage{bookmark} % for bookmarks
+\usepackage{lastpage} % for getting the total number of pages
+\usepackage{changepage} % for one column entries (adjustwidth environment)
+\usepackage{paracol} % for two and three column entries
+\usepackage{ifthen} % for conditional statements
+\usepackage{needspace} % for avoiding page brake right after the section title
+\usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+
+% Ensure that generate pdf is machine readable/ATS parsable:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    % \usepackage[T1]{fontenc} % this breaks sb2nov
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+
+
+% Some settings:
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
+\pagestyle{empty} % no header or footer
+\setcounter{secnumdepth}{0} % no section numbering
+\setlength{\parindent}{0pt} % no indentation
+\setlength{\topskip}{0pt} % no top skip
+\setlength{\columnsep}{0cm} % set column seperation
+\makeatletter
+\let\ps@customFooterStyle\ps@plain % Copy the plain style to customFooterStyle
+\patchcmd{\ps@customFooterStyle}{\thepage}{
+    \color{gray}\textit{\small Huashuo Lei - Page \thepage{} of \pageref*{LastPage}}
+}{}{} % replace number by desired string
+\makeatother
+\pagestyle{customFooterStyle}
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+
+\titlespacing{\section}{
+    % left space:
+    -1pt
+}{
+    % top space:
+    0.3 cm
+}{
+    % bottom space:
+    0.2 cm
+} % section title spacing
+
+\renewcommand\labelitemi{$\circ$} % custom bullet points
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0.4 cm + 10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights for bullet entries
+
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{
+        0.2 cm + 0.00001 cm
+    }{
+        0.2 cm + 0.00001 cm
+    }
+}{
+    \end{adjustwidth}
+} % new environment for one column entries
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.5 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for two column entries
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.5}
+}{
+    \par\kern\topsep
+} % new environment for the header
+
+\newcommand{\placelastupdatedtext}{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
+  \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
+    \put(
+        \LenToUnit{\paperwidth-2 cm-0.2 cm+0.05cm},
+        \LenToUnit{\paperheight-1.0 cm}
+    ){\vtop{{\null}\makebox[0pt][c]{
+        \small\color{gray}\textit{Last updated in September 2024}\hspace{\widthof{Last updated in September 2024}}
+    }}}%
+  }%
+}%
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+% new command for external links:
+\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\ifthenelse{\equal{#2}{}}{ }{#2 }\raisebox{.15ex}{\footnotesize \faExternalLink*}}}
+
+
+\begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{}
+
+    \placelastupdatedtext
+    \begin{header}
+    \textbf{\fontsize{24 pt}{24 pt}\selectfont Huashuo Lei}
+
+    \vspace{0.3 cm}
+
+    \normalsize
+    % --- 地址 ---
+    \mbox{{\color{black}\footnotesize\faMapMarker*}\hspace*{0.13cm}广州}%
+    \kern 0.25 cm%
+    \AND%
+    \kern 0.25 cm%
+    % --- 邮箱 ---
+    \mbox{\hrefWithoutArrow{mailto:youremail@yourdomain.com}{\color{black}{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}leihuashuohit@gmail.com}}%
+    \kern 0.25 cm%
+    \AND%
+    \kern 0.25 cm%
+    % --- 电话 ---
+    \mbox{\hrefWithoutArrow{tel:+14768821104}{\color{black}{\footnotesize\faPhone*}\hspace*{0.13cm}14768821104}}\\[0.15cm]
+    \mbox{\hrefWithoutArrow{https://scholar.google.com/citations?user=Kcf5u98AAAAJ&hl=en}{\color{black}{谷歌学术}}}%
+    \kern 0.25 cm%
+    \AND%
+    \kern 0.25 cm%
+    \mbox{\hrefWithoutArrow{https://wpyaoxueros.github.io/}{\color{black}{个人主页}}}%
+\end{header}
+
+\vspace{0.3 cm - 0.3 cm}
+
+
+
+    
+    
+
+    
+\section{教育背景}
+
+\begin{twocolentry}{
+\textit{Sept 2025 -- Present}}
+\textbf{The Hong Kong University of Science and Technology (Guangzhou)}
+
+\textit{机器人与自主系统硕士（ROAS）} \\
+导师：李浩昂教授
+\end{twocolentry}
+
+\vspace{0.2 cm}
+
+\begin{twocolentry}{
+\textit{Sept 2021 -- May 2025}}
+\textbf{Harbin Institute of Technology}
+
+\textit{机器人工程学士} \\
+本科导师：刘亚欣教授、姚玉峰教授 \\
+GPA：3.7/4.0
+\end{twocolentry}
+
+\section{论文发表}
+
+\begin{samepage}
+    \begin{twocolentry}{}
+        \textbf{RoboMemArena: A Keyframe-Annotated Benchmark for Memory-Dependent Robotic Manipulation}
+
+        \vspace{0.05 cm}
+        \mbox{H. Lei*, W. Song*, H. Zhang, J. Pei, J. Chen, H. Yan, H. Zhao, P. Ding, Z. Zhang, L. Huang, D. Wang, Y. Wang, H. Li}
+
+        \vspace{0.05 cm}
+
+        \mbox{Preprint, 2026}
+    \end{twocolentry}
+
+    \vspace{0.10 cm}
+
+    \begin{onecolentry}
+        \href{https://arxiv.org/abs/2605.10921}{Paper} \quad
+        \href{https://mp.weixin.qq.com/s/9puBzX48bsQeODE8DmRWUg}{Share} \quad
+        \href{https://robomemarena.github.io/}{Project} \quad
+        \href{https://github.com/wpyaoxueros/RoboMemArena}{GitHub}
+    \end{onecolentry}
+\end{samepage}
+
+\begin{samepage}
+    \begin{twocolentry}{}
+        \textbf{Static-Dynamic Disentanglement for Efficient Multi-Frame Vision-Language-Action Models}
+
+        \vspace{0.05 cm}
+        \mbox{W. Qiu*, H. Lei*, T. Huang, R. Ying}
+    \end{twocolentry}
+
+    \vspace{0.10 cm}
+
+    \begin{onecolentry}
+        \href{https://arxiv.org/abs/2602.03983}{Paper} \quad
+        \href{https://github.com/Boltzmachine/openvla-oft}{GitHub}
+    \end{onecolentry}
+\end{samepage}
+
+\begin{samepage}
+    \begin{twocolentry}{}
+        \textbf{HCSG: Human-Centric Semantic-Geometric Reasoning for Vision-Language Navigation}
+
+        \vspace{0.05 cm}
+        \mbox{H. Xu, T. Li, W. Chen, Y. Liu, J. Wu, H. Lei, Y. Lou, L. Wang, H. Wang, H. Li}
+
+        \vspace{0.05 cm}
+
+        \mbox{Preprint, 2026}
+    \end{twocolentry}
+
+    \vspace{0.10 cm}
+
+    \begin{onecolentry}
+        \href{https://arxiv.org/abs/2605.13321}{Paper} \quad
+        \href{https://haoxuanxu1024.github.io/HCSG/}{Project}
+    \end{onecolentry}
+\end{samepage}
+
+\begin{samepage}
+    \begin{twocolentry}{}
+        \textbf{Rethinking the Practicality of Vision-language-action Model: A Comprehensive Benchmark and An Improved Baseline}
+
+        \vspace{0.05 cm}
+        \mbox{W. Song*, J. Chen*, X. Sun*, H. Lei, Y. Qin, W. Zhao, P. Ding, H. Zhao, T. Wang, P. Hou, Z. Zhong, H. Yan, D. Wang, J. Ma, H. Li}
+
+        \vspace{0.05 cm}
+
+        \mbox{IEEE International Conference on Robotics and Automation (ICRA), 2026}
+    \end{twocolentry}
+
+    \vspace{0.10 cm}
+
+    \begin{onecolentry}
+        \href{https://arxiv.org/pdf/2602.22663}{Paper}
+    \end{onecolentry}
+\end{samepage}
+
+\begin{samepage}
+    \begin{twocolentry}{}
+        \textbf{High-Accuracy Early Recognition of Upper-Limb Motions for Exoskeleton-Assisted Mirror Rehabilitation}
+
+        \vspace{0.05 cm}
+        \mbox{H. Wang*, Y. Yao, H. Lei*, Y. Shi, S. Pei}
+
+        \vspace{0.05 cm}
+
+        \mbox{IEEE Robotics and Automation Letters (RA-L), 2025}
+    \end{twocolentry}
+
+    \vspace{0.10 cm}
+
+    \begin{onecolentry}
+        \href{https://ieeexplore.ieee.org/abstract/document/10855535}{Paper}
+    \end{onecolentry}
+\end{samepage}
+
+\begin{samepage}
+    \begin{twocolentry}{}
+        \textbf{Exploring Disentangled Appearance-Motion Contexts for Temporal Activity Localization}
+
+        \vspace{0.05 cm}
+        \mbox{H. Lei, X. Cai, D. Liu, X. Fang, X. Qu, J. Dong, J. Yu, K. Jin}
+
+        \vspace{0.05 cm}
+
+        \mbox{2025 International Joint Conference on Neural Networks}
+    \end{twocolentry}
+
+    \vspace{0.10 cm}
+
+    \begin{onecolentry}
+        \href{https://scholars.cityu.edu.hk/en/publications/exploring-disentangled-appearance-motion-contexts-for-temporal-ac}{Paper}
+    \end{onecolentry}
+\end{samepage}
+
+\begin{samepage}
+    \begin{twocolentry}{}
+        \textbf{MonoAttack: A Strong Attack Framework with Depth-Migration and Attribute-Tampering for Monocular 3D Object Detection}
+
+        \vspace{0.05 cm}
+        \mbox{X. Zhang*, H. Lei*, D. Liu, X. Qu, X. Fang, R. Guan, K. Jin}
+
+        \vspace{0.05 cm}
+
+        \mbox{2025 International Joint Conference on Neural Networks (IJCNN)}
+    \end{twocolentry}
+
+    \vspace{0.10 cm}
+
+    \begin{onecolentry}
+        \href{https://doi.org/10.1109/IJCNN64981.2025.11228111}{Paper}
+    \end{onecolentry}
+\end{samepage}
+
+\begin{samepage}
+    \begin{twocolentry}{}
+        \textbf{Manipulating the Bounding Box: Multimodal Controlled Backdoor Attacks on 3D Visual Grounding Models}
+
+        \vspace{0.05 cm}
+        \mbox{X. Zhang*, H. Lei*, D. Liu, X. Qu, X. Fang, R. Guan, K. Jin}
+
+        \vspace{0.05 cm}
+
+        \mbox{2025 International Joint Conference on Neural Networks (IJCNN)}
+    \end{twocolentry}
+
+    \vspace{0.10 cm}
+
+    \begin{onecolentry}
+        \href{https://doi.org/10.1109/IJCNN64981.2025.11229253}{Paper}
+    \end{onecolentry}
+\end{samepage}
+
+\section{实习经历}
+
+\noindent
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l r}
+\textbf{算法工程师实习生} & \textit{Nanjing, China \quad Jan 2023 -- Apr 2023} \\
+\textit{亿嘉和科技股份有限公司} & \\
+\textit{导师：Hao Wang} & \\
+\end{tabular*}
+
+\vspace{0.10 cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item 参与 \textbf{RD100 机器人项目}，主要负责视觉与控制仿真相关工作。
+        \item 使用 \texttt{OpenCV} 完成阈值分割与区域识别。
+        \item 结合 \texttt{Eigen}、\texttt{PCL} 等矩阵与点云库处理 ToF 深度相机数据，并计算对应区域的位置矩阵。
+        \item 完成 \textbf{手眼标定} 与机械臂仿真实现。
+        \item 将仿真系统与 \texttt{MoveIt!} 集成，用于实际操作任务。
+        \item 支持机械臂在管道与走廊等场景中完成对指定目标位置的到达任务。
+    \end{highlights}
+\end{onecolentry}
+
+\section{项目经历}
+
+\begin{twocolentry}{}
+    \begin{minipage}[t]{\textwidth}
+        \justifying
+        \textbf{RoboMemArena: A Keyframe-Annotated Benchmark for Memory-Dependent Robotic Manipulation}
+    \end{minipage}
+\end{twocolentry}
+
+\vspace{0.10 cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item 构建 \textbf{RoboMemArena} 长时程机器人操作基准，涵盖 \textbf{26 个任务}、每个任务 \textbf{100 条演示}，总计 \textbf{2,600} 条长轨迹，覆盖转移、遮挡、计数与顺序执行四类记忆需求场景。
+        \item 参与设计基于仿真的自动标注流程，包括 VLM 任务分解、AnyGrasp 自动执行与关键帧提取，共生成 \textbf{14,900} 条子任务级短轨迹及原生关键帧监督。
+        \item 设计面向记忆依赖型操作的评测方案，平均轨迹长度达到 \textbf{1,110} 步，\textbf{76.3\%} 的子任务依赖历史观测，能够系统评估非马尔可夫机器人决策能力。
+        \item 提出 \textbf{PrediMem} 分层式 VLM--VLA 基线框架，引入 predictive coding head 提升关键帧敏感性，并在推理阶段移除该模块，实现 \textbf{零额外测试开销}。
+        \item PrediMem 在 RoboMemArena 上取得最佳整体表现，在任务成功率（TSR）与累计成功率（CSR）指标上均优于对比方法。
+    \end{highlights}
+\end{onecolentry}
+
+\vspace{0.2 cm}
+
+\begin{twocolentry}{}
+    \begin{minipage}[t]{\textwidth}
+        \justifying
+        \textbf{Static-Dynamic Disentanglement for Efficient Multi-Frame Vision-Language-Action Models}
+    \end{minipage}
+\end{twocolentry}
+
+\vspace{0.10 cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item 提出 \textbf{DySta} 框架，将视觉输入解耦为多层级静态 token 与动态 token，用于高效多帧 VLA 建模。
+        \item 通过在多帧中仅保留一份静态 token 显著降低上下文长度，并利用轻量级 recache gate 复用静态 KV cache，提升推理效率。
+        \item 构建面向多帧整合能力的新评测基准，用于更有效分析 vision-language-action 模型在时间扩展任务下的整合能力。
+        \item 在效率与性能上同时取得显著提升，在保持乃至提升任务表现的同时，实现约 \textbf{2$\times$} 的推理加速。
+    \end{highlights}
+\end{onecolentry}
+
+\vspace{0.2 cm}
+
+\begin{twocolentry}{}
+    \begin{minipage}[t]{\textwidth}
+        \justifying
+        \textbf{Exploring Disentangled Appearance--Motion Contexts for Temporal Activity Localization}
+    \end{minipage}
+\end{twocolentry}
+
+\vspace{0.10 cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item 构建双编码器并引入正交正则，实现可解释的外观--运动特征解耦。
+        \item 采用向量量化策略，在不依赖大规模特征提取网络的情况下引导外观--运动分离。
+        \item 设计共享离散嵌入空间与三元组相似性学习机制，提升视频--文本对齐鲁棒性。
+        \item 集成注意力融合模块，提升时间活动定位精度。
+    \end{highlights}
+\end{onecolentry}
+
+\vspace{0.2 cm}
+
+\begin{twocolentry}{}
+    \begin{minipage}[t]{\textwidth}
+        \justifying
+        \textbf{Rethinking the Practicality of Vision-Language-Action Models: A Comprehensive Benchmark and an Improved Baseline}
+    \end{minipage}
+\end{twocolentry}
+
+\vspace{0.10 cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item \textbf{基准构建：} 提出 \textbf{CEBench}，覆盖仿真与真实场景下的跨具身机器人任务，包含单臂、双臂与移动操作，并引入 domain randomization。
+        \item \textbf{轻量化模型设计：} 开发 \textbf{LightVLA}，构建无需大规模预训练的轻量级 vision-language-action 模型，融合多视角感知、本体感觉 token 化与混合动作块设计。
+        \item \textbf{训练范式创新：} 提出两阶段 \textbf{post-training + fine-tuning} 训练策略，使小模型能够在无需昂贵大规模预训练的前提下达到甚至超过更大模型的表现。
+        \item \textbf{统一动作空间：} 设计离散--连续混合动作表示，将导航与操作统一到同一跨具身控制框架中。
+        \item \textbf{实验结果：} 实现与 7B 级模型相当甚至更优的性能，并构建出 \textbf{首个端到端支持真实移动操作的 VLA 系统}。
+    \end{highlights}
+\end{onecolentry}
+
+\vspace{0.2 cm}
+
+\begin{twocolentry}{}
+    \begin{minipage}[t]{\textwidth}
+        \justifying
+        \textbf{High-Accuracy Early Recognition of Upper-Limb Motions for Exoskeleton-Assisted Mirror Rehabilitation}
+    \end{minipage}
+\end{twocolentry}
+
+\vspace{0.10 cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item 参与基于 P-BTBS 的上肢动作参数化建模，并使用三角变化模式描述动作过程。
+        \item 负责基于 XGBoost、SVM、RNN、GRU、LSTM、Transformer 的动作分类任务，达到 100\% 准确率。
+        \item 创新性将 BERT 预训练用于动作序列“动作语言”表示，同样达到 100\% 准确率。
+    \end{highlights}
+\end{onecolentry}
+
+\section{技术能力}
+
+\begin{onecolentry}
+    \textbf{编程语言：} Python, C++, ROS, MATLAB, Bash
+\end{onecolentry}
+
+\vspace{0.2 cm}
+
+\begin{onecolentry}
+    \textbf{框架工具：} PyTorch, TensorFlow, JAX, Stable Baselines3, RLlib
+\end{onecolentry}
+
+\vspace{0.2 cm}
+
+\begin{onecolentry}
+    \textbf{机器人平台：} ROS/ROS2, Gazebo, Isaac Sim, Mujoco, PyBullet
+\end{onecolentry}
+
+\vspace{0.2 cm}
+
+\begin{onecolentry}
+    \textbf{相关技术：} NVIDIA CUDA, OpenCV, MoveIt!, URDF/Xacro, Robot Operating System middleware
+\end{onecolentry}
+
+\vspace{0.2 cm}
+
+\begin{onecolentry}
+    \textbf{研究方向：} Robot Policy Learning, Vision-Language-Action Models (VLA), Embodied AI, Reinforcement Learning, Motion Planning, Control
+\end{onecolentry}
+
+\section{英语能力}
+
+\begin{onecolentry}
+    \textbf{英语水平：} IELTS 7.0, CET-6, CET-4
+\end{onecolentry}
+
+\section{奖项荣誉}
+
+\begin{onecolentry}
+    \begin{highlights}
+        \item 美国大学生数学建模竞赛国际二等奖
+        \item 全国海洋工程装备竞赛国家二等奖
+        \item IKCEST 大数据竞赛全国第 32 名（3809 支队伍）
+        \item 哈尔滨工业大学人民奖学金、社会工作奖学金
+    \end{highlights}
+\end{onecolentry}
+
+\section{专利与软件}
+
+\begin{onecolentry}
+    \begin{highlights}
+        \item 学生发明人：\textit{Fusion Depth Separable Convolution YOLOv8 Based Defect Detection Method for Carbon Fiber Prepreg}
+        \item 第一作者实用新型专利：\textit{Garbage Sorting Equipment}
+        \item 两项第一作者软件著作成果
+    \end{highlights}
+\end{onecolentry}
+
+\end{document}
