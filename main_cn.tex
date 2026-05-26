@@ -2,11 +2,7 @@
 \hyphenpenalty=10000
 \exhyphenpenalty=10000
 \usepackage{ragged2e} % 提供 \justifying
-\usepackage{fontspec}
-\usepackage{xeCJK}
-\setCJKmainfont{FandolSong-Regular}
-\setCJKsansfont{FandolHei-Regular}
-\setCJKmonofont{FandolFang-Regular}
+\usepackage{CJKutf8}
 \usepackage{ragged2e}
 \usepackage{etoolbox}
 % twocolentry / onecolentry 中的文字默认用两端对齐
@@ -152,6 +148,7 @@
 
 
 \begin{document}
+\begin{CJK*}{UTF8}{gbsn}
     \newcommand{\AND}{\unskip
         \cleaders\copy\ANDbox\hskip\wd\ANDbox
         \ignorespaces
@@ -542,4 +539,5 @@ GPA：3.7/4.0
     \end{highlights}
 \end{onecolentry}
 
+\end{CJK*}
 \end{document}
