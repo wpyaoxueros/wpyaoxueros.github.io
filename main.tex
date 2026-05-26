@@ -31,8 +31,8 @@
 \usepackage{fontawesome5} % for using icons
 \usepackage{amsmath} % for math
 \usepackage[
-    pdftitle={John Doe's CV},
-    pdfauthor={John Doe},
+    pdftitle={Huashuo Lei's CV},
+    pdfauthor={Huashuo Lei},
     pdfcreator={LaTeX with RenderCV},
     colorlinks=true,
     urlcolor=primaryColor
@@ -68,7 +68,7 @@
 \makeatletter
 \let\ps@customFooterStyle\ps@plain % Copy the plain style to customFooterStyle
 \patchcmd{\ps@customFooterStyle}{\thepage}{
-    \color{gray}\textit{\small John Doe - Page \thepage{} of \pageref*{LastPage}}
+    \color{gray}\textit{\small Huashuo Lei - Page \thepage{} of \pageref*{LastPage}}
 }{}{} % replace number by desired string
 \makeatother
 \pagestyle{customFooterStyle}
@@ -139,6 +139,22 @@
     \par\kern\topsep
 } % new environment for the header
 
+\newcommand{\pubtitle}[1]{%
+    \noindent\textbf{\begin{minipage}[t]{\linewidth}\raggedright #1\end{minipage}}\par
+}
+
+\newcommand{\pubauthors}[1]{%
+    \noindent\hspace*{1.2em}#1\par
+}
+
+\newcommand{\pubvenue}[1]{%
+    \noindent\hspace*{1.2em}#1\par
+}
+
+\newcommand{\publinks}[1]{%
+    \noindent{\small #1}\par
+}
+
 \newcommand{\placelastupdatedtext}{% \placetextbox{<horizontal pos>}{<vertical pos>}{<stuff>}
   \AddToShipoutPictureFG*{% Add <stuff> to current page foreground
     \put(
@@ -183,7 +199,12 @@
     \AND%
     \kern 0.25 cm%
     % --- 电话 ---
-    \mbox{\hrefWithoutArrow{tel:+14768821104}{\color{black}{\footnotesize\faPhone*}\hspace*{0.13cm}14768821104}}%
+    \mbox{\hrefWithoutArrow{tel:+14768821104}{\color{black}{\footnotesize\faPhone*}\hspace*{0.13cm}14768821104}}\\[0.15cm]
+    \mbox{\href{https://scholar.google.com/citations?user=Kcf5u98AAAAJ&hl=en}{\color{primaryColor}{\footnotesize\faGraduationCap}\hspace*{0.12cm}Google Scholar}}%
+    \kern 0.25 cm%
+    \AND%
+    \kern 0.25 cm%
+    \mbox{\href{https://wpyaoxueros.github.io/}{\color{primaryColor}{\footnotesize\faGlobe}\hspace*{0.12cm}Homepage}}%
 \end{header}
 
 \vspace{0.3 cm - 0.3 cm}
@@ -200,7 +221,7 @@
 \textbf{The Hong Kong University of Science and Technology (Guangzhou)}
 
 \textit{MPhil in Robotics and Autonomous Systems (ROAS)} \\
-Supervisor: Prof. Haoang Li
+Supervisors: Prof. Yaxin Liu and Prof. Yufeng Yao
 \end{twocolentry}
 
 \vspace{0.2 cm}
@@ -209,105 +230,94 @@ Supervisor: Prof. Haoang Li
 \textit{Sept 2021 – May 2025}}
 \textbf{Harbin Institute of Technology}
 
-\textit{BS in Robotics Engineering}
+\textit{BS in Robotics Engineering} \\
+GPA: 3.7/4.0
 \end{twocolentry}
 
-\vspace{0.10 cm}
+    \section{Publications}
+
 \begin{onecolentry}
-    \begin{highlights}
-        
-    \end{highlights}
+    \pubtitle{RoboMemArena: A Keyframe-Annotated Benchmark for Memory-Dependent Robotic Manipulation}
+    \pubauthors{H. Lei*, W. Song*, H. Zhang, J. Pei, J. Chen, H. Yan, H. Zhao, P. Ding, Z. Zhang, L. Huang, D. Wang, Y. Wang, H. Li}
+    \pubvenue{Preprint, 2026 \quad|\quad \href{https://arxiv.org/abs/2605.10921}{Paper} \quad|\quad \href{https://mp.weixin.qq.com/s/9puBzX48bsQeODE8DmRWUg}{Share} \quad|\quad \href{https://robomemarena.github.io/}{Project} \quad|\quad \href{https://github.com/wpyaoxueros/RoboMemArena}{GitHub} \quad|\quad \href{https://huggingface.co/datasets/4tvBXBHgz/RoboMemArena}{Dataset} \quad|\quad \href{https://robomemarena.github.io/leaderboard.html}{Board}}
 \end{onecolentry}
 
-    
-    \section{Experience}
+\vspace{0.18 cm}
+
+\begin{onecolentry}
+    \pubtitle{Static-Dynamic Disentanglement for Efficient Multi-Frame Vision-Language-Action Models}
+    \pubauthors{W. Qiu*, H. Lei*, T. Huang, R. Ying}
+    \pubvenue{\href{https://arxiv.org/abs/2602.03983}{Paper} \quad|\quad \href{https://github.com/Boltzmachine/openvla-oft}{GitHub}}
+\end{onecolentry}
+
+\vspace{0.18 cm}
+
+\begin{onecolentry}
+    \pubtitle{HCSG: Human-Centric Semantic-Geometric Reasoning for Vision-Language Navigation}
+    \pubauthors{H. Xu, T. Li, W. Chen, Y. Liu, J. Wu, H. Lei, Y. Lou, L. Wang, H. Wang, H. Li}
+    \pubvenue{Preprint, 2026 \quad|\quad \href{https://arxiv.org/abs/2605.13321}{Paper} \quad|\quad \href{https://haoxuanxu1024.github.io/HCSG/}{Project}}
+\end{onecolentry}
+
+\vspace{0.18 cm}
+
+\begin{onecolentry}
+    \pubtitle{Rethinking the Practicality of Vision-language-action Model: A Comprehensive Benchmark and An Improved Baseline}
+    \pubauthors{W. Song*, J. Chen*, X. Sun*, H. Lei, Y. Qin, W. Zhao, P. Ding, H. Zhao, T. Wang, P. Hou, Z. Zhong, H. Yan, D. Wang, J. Ma, H. Li}
+    \pubvenue{IEEE International Conference on Robotics and Automation (ICRA), 2026 \quad|\quad \href{https://arxiv.org/pdf/2602.22663}{Paper}}
+\end{onecolentry}
+
+\vspace{0.18 cm}
+
+\begin{onecolentry}
+    \pubtitle{High-Accuracy Early Recognition of Upper-Limb Motions for Exoskeleton-Assisted Mirror Rehabilitation}
+    \pubauthors{H. Wang*, Y. Yao, H. Lei*, Y. Shi, S. Pei}
+    \pubvenue{IEEE Robotics and Automation Letters \quad|\quad \href{https://ieeexplore.ieee.org/abstract/document/10855535}{Paper}}
+\end{onecolentry}
+
+\vspace{0.18 cm}
+
+\begin{onecolentry}
+    \pubtitle{Exploring Disentangled Appearance-Motion Contexts for Temporal Activity Localization}
+    \pubauthors{H. Lei, X. Cai, D. Liu, X. Fang, X. Qu, J. Dong, J. Yu, K. Jin}
+    \pubvenue{2025 International Joint Conference on Neural Networks \quad|\quad \href{https://scholars.cityu.edu.hk/en/publications/exploring-disentangled-appearance-motion-contexts-for-temporal-ac}{Paper}}
+\end{onecolentry}
+
+\vspace{0.18 cm}
+
+\begin{onecolentry}
+    \pubtitle{MonoAttack: A Strong Attack Framework with Depth-Migration and Attribute-Tampering for Monocular 3D Object Detection}
+    \pubauthors{X. Zhang*, H. Lei*, D. Liu, X. Qu, X. Fang, R. Guan, K. Jin}
+    \pubvenue{2025 International Joint Conference on Neural Networks (IJCNN) \quad|\quad \href{https://doi.org/10.1109/IJCNN64981.2025.11228111}{Paper}}
+\end{onecolentry}
+
+\vspace{0.18 cm}
+
+\begin{onecolentry}
+    \pubtitle{Manipulating the Bounding Box: Multimodal Controlled Backdoor Attacks on 3D Visual Grounding Models}
+    \pubauthors{X. Zhang*, H. Lei*, D. Liu, X. Qu, X. Fang, R. Guan, K. Jin}
+    \pubvenue{2025 International Joint Conference on Neural Networks (IJCNN) \quad|\quad \href{https://doi.org/10.1109/IJCNN64981.2025.11229253}{Paper}}
+\end{onecolentry}
+\section{Internship}
 
 \noindent
 \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l r}
 \textbf{Algorithm Engineer} & \textit{Nanjing, China \quad Jan 2023 – Apr 2023} \\
 \textit{Yijiahe Technology Co., Ltd.} & \\
+\textit{Mentor: Hao Wang} & \\
 \end{tabular*}
 
 
 \vspace{0.10 cm}
 \begin{onecolentry}
     \begin{highlights}
-        \item Participated in the \textbf{RD100  robotics project}, focusing on vision-guided motion control and dynamic simulation of humanoid manipulators.
-        \item Developed a \textbf{vision and control simulation pipeline} using \texttt{OpenCV} for threshold-based segmentation and region detection, integrated with \texttt{Eigen} and \texttt{PCL} for point-cloud processing and depth reconstruction from ToF camera data.
-        \item Implemented \textbf{hand–eye calibration} and computed spatial transformation matrices to achieve accurate end-effector localization and task-space mapping.
-        \item Built a complete \textbf{humanoid arm simulation} integrated with \texttt{MoveIt!} and \texttt{ROS}, enabling real-time trajectory planning and precise manipulation in a dynamic environment.
-        \item Supported the deployment of the humanoid robot in an industrial \textbf{assembly-line environment}, achieving stable reaching and grasping performance for spatially varying targets.
+        \item Participated in the \textbf{RD100 robotics project}, mainly working on vision and control simulation.
+        \item Used \texttt{OpenCV} for threshold-based segmentation and region identification.
+        \item Combined \texttt{Eigen}, \texttt{PCL}, and other matrix libraries to process ToF depth camera data and compute the position matrix of corresponding regions.
+        \item Implemented \textbf{hand--eye calibration} and completed robotic arm simulation.
+        \item Integrated the simulation with \texttt{MoveIt!} for practical operation.
+        \item Supported pipeline and corridor manipulation tasks in which the robotic arm reached specified target positions.
     \end{highlights}
 \end{onecolentry}
-
-
-    
-    \section{Publications}
-
-
-
-        
-        \begin{samepage}
-            \begin{twocolentry}{
-                Co-First Author
-            }
-                \textbf{High-Accuracy Early Recognition of Upper-Limb Motions for Exoskeleton-Assisted Mirror Rehabilitation}
-
-                \vspace{0.10 cm}
-
-                \mbox{IEEE Robotics and Automation Letters}
-                
-            \end{twocolentry}
-
-
-            \vspace{0.10 cm}
-
-            \begin{onecolentry}
-        \href{https://ieeexplore.ieee.org/abstract/document/10855535}{10.1109/LRA.2025.3534684}
-            \end{onecolentry}
-        \end{samepage}
-        \begin{samepage}
-            \begin{twocolentry}{
-                Co-First Author
-            }
-                \textbf{Exploring Disentangled Appearance-Motion Contexts for Temporal Activity Localization}
-
-                \vspace{0.10 cm}
-
-                \mbox{2025 International Joint Conference on Neural Networks}
-                
-            \end{twocolentry}
-
-
-            \vspace{0.10 cm}
-
-            \begin{onecolentry}
-        \href{https://scholars.cityu.edu.hk/en/publications/exploring-disentangled-appearance-motion-contexts-for-temporal-ac}{10.1109/IJCNN.2025.3534684}
-            \end{onecolentry}
-        \end{samepage}
-        \begin{samepage}
-            \begin{twocolentry}{
-                Forth Author
-            }
-                \textbf{Rethinking the Practicality of Vision-language-action Model:
-A Comprehensive Benchmark and An Improved Baseline}
-
-                \vspace{0.10 cm}
-
-                \mbox{IEEE International Conference on Robotics and Automation}
-                
-            \end{twocolentry}
-
-
-            \vspace{0.10 cm}
-
-            \begin{onecolentry}
-        \href{https://scholars.cityu.edu.hk/en/publications/exploring-disentangled-appearance-motion-contexts-for-temporal-ac}{}
-            \end{onecolentry}
-        \end{samepage}
-        
-
-
 
 \section{Projects}
 
@@ -315,22 +325,45 @@ A Comprehensive Benchmark and An Improved Baseline}
 \begin{twocolentry}{}
     \begin{minipage}[t]{\textwidth}
         \justifying
-        \textbf{High-Accuracy Early Recognition of Upper-Limb Motions for Exoskeleton-Assisted Mirror Rehabilitation}
+        \textbf{RoboMemArena: A Keyframe-Annotated Benchmark for Memory-Dependent Robotic Manipulation}
     \end{minipage}
 \end{twocolentry}
 
 \vspace{0.10 cm}
 \begin{onecolentry}
     \begin{highlights}
-        \item Assisted in parameterizing upper limb movements using P-BTBS and describing motion with triangular variation patterns.
-        \item Responsible for movement classification using tree-based integration (XGBoost), SVM, RNN, GRU, LSTM, Transformer, achieving 100\% accuracy.
-        \item Innovatively applied BERT pre-training to represent motion sequences as “action language,” achieving 100\% accuracy.
+        \item Built \textbf{RoboMemArena}, a long-horizon manipulation benchmark with \textbf{26 tasks} and \textbf{100 demonstrations per task} (\textbf{2,600} trajectories total), covering transferring, occlusion, counting, and sequential execution settings.
+        \item Developed a simulation-first automatic annotation pipeline with VLM-driven decomposition, AnyGrasp-based execution, and keyframe extraction, producing \textbf{14,900} subtask-level short trajectories with native keyframe supervision.
+        \item Designed memory-intensive evaluation protocol with average trajectory length of \textbf{1,110} steps and \textbf{76.3\%} memory-dependent subtasks, enabling systematic assessment of non-Markovian robotic decision making.
+        \item Proposed \textbf{PrediMem}, a hierarchical VLM--VLA baseline with a predictive coding head that improves keyframe sensitivity during training and is removed at inference for \textbf{zero extra test-time cost}.
+        \item PrediMem achieved the strongest overall performance on RoboMemArena, reaching top results on both task success rate (TSR) and cumulative success rate (CSR) among compared baselines.
+        \item Links: \href{https://robomemarena.github.io/}{Project Page}, \href{https://mp.weixin.qq.com/s/9puBzX48bsQeODE8DmRWUg}{Share}, \href{https://github.com/wpyaoxueros/RoboMemArena}{GitHub}, \href{https://huggingface.co/datasets/4tvBXBHgz/RoboMemArena}{Dataset}, \href{https://robomemarena.github.io/leaderboard.html}{Leaderboard}.
     \end{highlights}
 \end{onecolentry}
 
 \vspace{0.2 cm}
 
 % ---------- Project 2 ----------
+\begin{twocolentry}{}
+    \begin{minipage}[t]{\textwidth}
+        \justifying
+        \textbf{Static-Dynamic Disentanglement for Efficient Multi-Frame Vision-Language-Action Models}
+    \end{minipage}
+\end{twocolentry}
+
+\vspace{0.10 cm}
+\begin{onecolentry}
+    \begin{highlights}
+        \item Proposed \textbf{DySta}, a framework that disentangles visual observations into multi-level static and dynamic tokens for efficient multi-frame VLA modeling.
+        \item Reduced context length by retaining a single copy of static tokens across frames and improved inference efficiency through a lightweight recache gate for static KV-cache reuse.
+        \item Built a benchmark to better evaluate multi-frame integration ability in vision-language-action models under temporally extended tasks.
+        \item Achieved strong gains in both efficiency and performance, improving multi-frame integration quality while delivering around \textbf{2$\times$} faster inference.
+    \end{highlights}
+\end{onecolentry}
+
+\vspace{0.2 cm}
+
+% ---------- Project 3 ----------
 \begin{twocolentry}{}
     \begin{minipage}[t]{\textwidth}
         \justifying
@@ -350,7 +383,7 @@ A Comprehensive Benchmark and An Improved Baseline}
 
 \vspace{0.2 cm}
 
-% ---------- Project 3 ----------
+% ---------- Project 4 ----------
 \begin{twocolentry}{}
     \begin{minipage}[t]{\textwidth}
         \justifying
@@ -375,22 +408,20 @@ A Comprehensive Benchmark and An Improved Baseline}
 
 \vspace{0.2 cm}
 
-% ---------- Project 4 ----------
+% ---------- Project 5 ----------
 \begin{twocolentry}{}
     \begin{minipage}[t]{\textwidth}
         \justifying
-        \textbf{RoboMemArena: A Keyframe-Annotated Benchmark for Memory-Dependent Robotic Manipulation}
+        \textbf{High-Accuracy Early Recognition of Upper-Limb Motions for Exoskeleton-Assisted Mirror Rehabilitation}
     \end{minipage}
 \end{twocolentry}
 
 \vspace{0.10 cm}
 \begin{onecolentry}
     \begin{highlights}
-        \item Built \textbf{RoboMemArena}, a long-horizon manipulation benchmark with \textbf{26 tasks} and \textbf{100 demonstrations per task} (\textbf{2,600} trajectories total), covering transferring, occlusion, counting, and sequential execution settings.
-        \item Developed a simulation-first automatic annotation pipeline with VLM-driven decomposition, AnyGrasp-based execution, and keyframe extraction, producing \textbf{14,900} subtask-level short trajectories with native keyframe supervision.
-        \item Designed memory-intensive evaluation protocol with average trajectory length of \textbf{1,110} steps and \textbf{76.3\%} memory-dependent subtasks, enabling systematic assessment of non-Markovian robotic decision making.
-        \item Proposed \textbf{PrediMem}, a hierarchical VLM--VLA baseline with a predictive coding head that improves keyframe sensitivity during training and is removed at inference for \textbf{zero extra test-time cost}.
-        \item PrediMem achieved the strongest overall performance on RoboMemArena, reaching top results on both task success rate (TSR) and cumulative success rate (CSR) among compared baselines.
+        \item Assisted in parameterizing upper limb movements using P-BTBS and describing motion with triangular variation patterns.
+        \item Responsible for movement classification using tree-based integration (XGBoost), SVM, RNN, GRU, LSTM, Transformer, achieving 100\% accuracy.
+        \item Innovatively applied BERT pre-training to represent motion sequences as “action language,” achieving 100\% accuracy.
     \end{highlights}
 \end{onecolentry}
 
@@ -426,6 +457,32 @@ A Comprehensive Benchmark and An Improved Baseline}
 
 \begin{onecolentry}
     \textbf{Research Domains:} Robot Policy Learning, Vision-Language-Action Models (VLA), Embodied AI, Reinforcement Learning, Motion Planning, Control
+\end{onecolentry}
+
+\section{English Skills}
+
+\begin{onecolentry}
+    \textbf{English Proficiency:} IELTS 7.0, CET-6, CET-4
+\end{onecolentry}
+
+\section{Awards}
+
+\begin{onecolentry}
+    \begin{highlights}
+        \item International Second Prize, U.S. College Student Mathematical Modeling Competition
+        \item National Second Prize, Offshore Engineering Equipment Competition
+        \item National Ranking 32/3809, IKCEST Big Data Competition
+    \end{highlights}
+\end{onecolentry}
+
+\section{Patents \& Software}
+
+\begin{onecolentry}
+    \begin{highlights}
+        \item Student inventor, \textit{Fusion Depth Separable Convolution YOLOv8 Based Defect Detection Method for Carbon Fiber Prepreg}
+        \item First-author utility model patent, \textit{Garbage Sorting Equipment}
+        \item Two first-author software publications
+    \end{highlights}
 \end{onecolentry}
 
 
